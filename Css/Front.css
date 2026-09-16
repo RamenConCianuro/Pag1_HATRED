@@ -1,0 +1,24 @@
+body{
+    background-color: #004400;
+    color: goldenrod;
+}
+.NoBorde{
+    border: none;
+    background-color: transparent;
+}
+#Usuario{
+    display: none;
+}
+#Usuario.mostrar{
+    display: block;
+}
+.barra{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    border: 2px goldenrod solid;
+    background-color: #004400;
+    border-radius: 10px;
+    padding: 10px;
+}
