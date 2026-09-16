@@ -4,6 +4,8 @@ Esquilax Bet es un prototipo de página web con temática de casino y apuestas. 
 
 Actualmente, el proyecto está desarrollado principalmente en el lado del cliente. Las pantallas de inicio de sesión y registro corresponden a la interfaz visual y todavía no cuentan con persistencia de usuarios, base de datos ni manejo real de fondos.
 
+Ip elastica: 35.171.31.215
+
 #Tecnologías utilizadas
 
 -HTML5: estructura de las distintas páginas del sitio.
