@@ -1,37 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="Css/Front.css">
 </head>
-<nav class="barra">
+
+<body>
+    <nav class="barra">
     <div class="derecha">
         <button id="Home" class="NoBorde">
         <img src="Imagenes/house-door-fill.svg" height="30">
         </button>
     </div>
+    <div>
+        <h1 class="Esquilax">Esquilax Bet</h1>
+    </div>
     <div class="izquierda">
         <button id="Login">
         Login
         </button>
-        <button id="Sign In">
+        <button id="SignIn">
             Sign In
         </button>
-        <button id="Cuenta" class="NoBorde">
-            <img src="Imagenes/person-circle.svg" height="30">
-        </button>
+        <div class="cuentaContenedor">
+            <button id="Cuenta" class="NoBorde">
+                <img src="Imagenes/person-circle.svg" height="30">
+            </button>
+        </div>
+        <div id="Usuario">
+        Inicia sesión para acceder a tu cuenta
+        </div>
+    </div>
+
+</div>
         <div id="Usuario">
             Inicia sesion para añadir fondos
         </div>
     </div>
     
 </nav>
-
-<body>
-    <button id="BlackJack">
-        <img src="Imagenes/blackjackicon.jpg" height="300">
-    </button>
+    <div class="contenedorBlackjack">
+        <button id="BlackJack" class="botonGrande">
+            <img src="Imagenes/blackjackicon.jpg" height="300">
+        </button>
+    </div>
     <script src="Js/Front.js"></script>
 </body>
 

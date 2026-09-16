@@ -1,37 +1,35 @@
 body{
-    background-color: #004400;
     color: goldenrod;
+    margin: 0;
+    background-image: url("../Imagenes/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-.imagen-izquierda{
-    position: absolute;
-    mix-blend-mode: multiply;
-    width: 15%;
-    height: 18%;
-    top: 15px;
-    transform: rotate(-20deg);
-    left: 10%;
+.Esquilax {
+    display: block;
+    width: fit-content;
+    margin: 50px auto 0;
+    font-family: inherit;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
-.imagen-derecha{
-    position: absolute;
-    mix-blend-mode: multiply;
-    width: 15%;
-    height: 18%;
-    top: 15px;
-    transform: rotate(20deg) scaleX(-1);
-    right: 10%;
-}
-h1{
-    color:#E6262B;
+
+h1 {
+    color: #E6262B;
     text-align: center;
     font-size: 50px;
-    margin-left:25%;
-    margin-right:25%;
-    padding: 10px;
-    text-shadow: 
-    3px 3px 5px #000000,
-    4px 4px 5px black,
-    5px 5px 5px black;
+    margin: 0;
+    padding: 0;
+    text-shadow:
+        3px 3px 5px #000000,
+        4px 4px 5px black,
+        5px 5px 5px black;
 }
 
 #descripcion{
@@ -41,8 +39,10 @@ h1{
     border: 2px goldenrod solid;
     border-radius: 10px;
     padding: 10px;
+    margin: 30px;
 }
 .cuadro{
+    position: relative;
     font-size: 20px;
     background-color: #000000;
     color:yellow;

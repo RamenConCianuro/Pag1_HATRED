@@ -6,7 +6,7 @@ const login = document.getElementById("Login");
 login.addEventListener("click", function(){
     window.location.href = "Login.html";
 });
-const signin = document.getElementById("Sign In");
+const signin = document.getElementById("SignIn");
 signin.addEventListener("click", function(){
     window.location.href = "SignIn.html";
 });
@@ -14,4 +14,8 @@ const cuenta = document.getElementById("Cuenta");
 const usuario = document.getElementById("Usuario");
 cuenta.addEventListener("click", function(){
     usuario.classList.toggle("mostrar");
+});
+const blackjack = document.getElementById("BlackJack");
+blackjack.addEventListener("click", function(){
+    window.location.href = "BlackJack.html";
 });
