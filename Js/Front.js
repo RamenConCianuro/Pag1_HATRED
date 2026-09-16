@@ -1,6 +1,6 @@
 const home = document.getElementById("Home");
 home.addEventListener("click", function(){
-    window.location.href = "Front.html";
+    window.location.href = "index.html";
 });
 const login = document.getElementById("Login");
 login.addEventListener("click", function(){
