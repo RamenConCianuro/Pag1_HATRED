@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "nombre": "Super21",
+        "categoria": "Cartas",
+        "nombres": [
+            "Super21",
+            "Super 21",
+            "Blackjack",
+            "Black Jack",
+            "21"
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Ruleta",
+        "categoria": "Mesa",
+        "nombres": [
+            "Ruleta",
+            "Roulette",
+            "Ruleta de casino"
+        ]
+    },
+    {
+        "id": 3,
+        "nombre": "Poker",
+        "categoria": "Cartas",
+        "nombres": [
+            "Poker",
+            "Póker",
+            "Texas Holdem",
+            "Texas Hold em"
+        ]
+    },
+    {
+        "id": 4,
+        "nombre": "Tragaperras",
+        "categoria": "Maquinas",
+        "nombres": [
+            "Tragaperras",
+            "Traga perras",
+            "Slots",
+            "Maquinas tragamonedas",
+            "Tragamonedas"
+        ]
+    }
+]

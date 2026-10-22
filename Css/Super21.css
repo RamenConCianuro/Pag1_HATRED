@@ -154,3 +154,45 @@ a:focus-visible {
     outline: 3px solid #f5eedc;
     outline-offset: 4px;
 }
+
+.reglamento { position: relative; }
+
+.reglamento-panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: min(380px, 90vw);
+    max-height: 65vh;
+    overflow-y: auto;
+    z-index: 10;
+    background-color: #082B0A;
+    color: white;
+    border: 1px solid goldenrod;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 8px;
+    box-shadow: 0 5px 18px #000;
+}
+
+.reglamento-panel h5 { color: goldenrod; }
+
+.cuenta-panel { position: absolute; right: 0; top: 100%; width: 290px; z-index: 15; background: #082B0A; border: 1px solid goldenrod; padding: 16px; border-radius: 10px; color: white; }
+.apuesta-panel { background: #082B0A; border: 1px solid goldenrod; border-radius: 12px; padding: 24px; color: white; }
+
+/* Modo invitado y modo usuario */
+[x-cloak] { display: none !important; }
+#menu-conectado, #panel-apuesta, #panel-fin { display: none; }
+.modo-usuario #menu-invitado { display: none !important; }
+.modo-usuario #menu-conectado { display: flex; }
+.modo-usuario #mesa-juego { display: none; }
+.modo-usuario #panel-apuesta { display: flex; }
+.modo-usuario.en-partida #panel-apuesta,
+.modo-usuario.partida-terminada #panel-apuesta { display: none; }
+.modo-usuario.en-partida #mesa-juego,
+.modo-usuario.partida-terminada #mesa-juego { display: block; }
+.modo-usuario.partida-terminada #panel-fin { display: block; }
+
+/* Menu de cuenta: mismo aspecto que en el inicio */
+.cuenta-menu { position: absolute; right: 0; top: 100%; margin-top: 10px; width: 290px; max-width: 90vw; background: #082B0A; border: 1px solid goldenrod; border-radius: 10px; padding: 18px; color: white; z-index: 1000; box-shadow: 0 6px 16px rgba(0,0,0,.6); }
+.cuenta-menu h5, .cuenta-menu .saldo { color: goldenrod; }
+.cuenta-menu .datos { border-top: 1px solid #806522; margin-top: 12px; padding-top: 12px; }

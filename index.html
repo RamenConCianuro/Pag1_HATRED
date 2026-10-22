@@ -11,29 +11,72 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous">
     <link rel="stylesheet" href="Css/Front.css">
+    <link rel="stylesheet" href="Css/Busqueda.css">
+    <script src="Js/BuscarJuegos.js" defer></script>
+    <script src="Js/Cuentas.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 </head>
 <body class="d-flex flex-column">
 
-    <div class="barra">
-        
-        <div class="container py-3 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-3"
-            aria-label="Navegación principal">
+    <div class="barra" x-data="cuentaInicio()" x-init="cargarCuenta()">
+        <div class="container py-3 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-3">
             <div class="d-flex align-items-center gap-3">
-                <a href="index.html" class="btn btn-outline-dorado boton-icono" aria-label="Inicio" aria-current="page">
+                <a href="index.html" class="btn btn-outline-dorado boton-icono" aria-label="Inicio">
                     <img src="Imagenes/house-door-fill.svg" width="22" height="22" alt="">
                 </a>
                 <a href="index.html" class="marca">Esquilax Bet</a>
             </div>
 
-            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2">
-                <a href="Login.html" class="btn btn-outline-dorado">Iniciar sesión</a>
-                <a href="SignIn.html" class="btn btn-dorado">Crear cuenta</a>
-                
-                <a href="Login.html" class="btn btn-outline-dorado boton-icono rounded-circle"
-                aria-label="Iniciar sesión en tu cuenta" title="Iniciar sesión">
-                    <img src="Imagenes/person-circle.svg" width="26" height="26" alt="">
-                </a>
+            <div x-cloak x-show="!cargando">
+                <template x-if="!cuenta">
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="Login.html" class="btn btn-outline-dorado">Iniciar sesión</a>
+                        <a href="SignIn.html" class="btn btn-dorado">Crear cuenta</a>
+                        <a href="Login.html" class="btn btn-outline-dorado boton-icono rounded-circle">
+                            <img src="Imagenes/person-circle.svg" width="26" height="26" alt="Cuenta">
+                        </a>
+                    </div>
+                </template>
+
+                <template x-if="cuenta">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="texto-dorado" x-text="cuenta.usuario"></span>
+                        <div class="position-relative" @click.outside="mostrarMenu = false">
+                            <button class="btn btn-outline-dorado boton-icono rounded-circle"
+                                    @click="mostrarMenu = !mostrarMenu" title="Mi cuenta">
+                                <img src="Imagenes/person-circle.svg" width="26" height="26" alt="Mi cuenta">
+                            </button>
+
+                            <div class="cuenta-menu" x-show="mostrarMenu" x-cloak>
+                                <h5 class="mb-3">Mi cuenta</h5>
+                                <div>Usuario: <strong x-text="cuenta.usuario"></strong></div>
+                                <div class="mt-2">Créditos disponibles:</div>
+                                <div class="saldo fs-4 fw-bold" x-text="creditos"></div>
+
+                                <div class="datos">
+                                    <div class="mb-2">Estadísticas</div>
+                                    <div>Partidas: 0</div>
+                                    <div>Victorias: 0</div>
+                                    <div>Derrotas: 0</div>
+                                </div>
+
+                                <form class="datos" x-show="cuenta.tipo === 'admin'"
+                                    @submit.prevent="modificarSaldo()">
+                                    <div class="texto-dorado mb-2">Modificar mi saldo</div>
+                                    <label class="form-label" for="nuevoSaldo">Nuevo saldo (máximo 10000)</label>
+                                    <input class="form-control mb-2" id="nuevoSaldo" type="number"
+                                        min="0" max="10000" x-model="nuevoSaldo">
+                                    <button type="submit" class="btn btn-dorado w-100">Guardar saldo</button>
+                                </form>
+                                <p class="small mt-2 mb-0" x-show="mensaje !== ''" x-text="mensaje"></p>
+                                <button class="btn btn-outline-dorado w-100 mt-3" @click="cerrarSesion()">
+                                    Cerrar sesión
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -43,6 +86,43 @@
             <p class="texto-dorado small text-uppercase fw-semibold mb-2">Bienvenido a Esquilax Bet</p>
             <h1 id="titulo-principal" class="titulo mb-3">La próxima carta cambia la historia</h1>
             <p class="texto-suave mb-0">Elige tu juego y establece una apuesta.</p>
+        </div>
+
+        <div class="row justify-content-center mb-4" x-data="catalogo()" x-init="cargarJuegos()">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="contenedor-busqueda" @click.outside="mostrarResultados = false">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar juego..." x-model="busqueda" @focus="mostrarResultados = true">
+                        <button class="btn btn-dorado" @click="mostrarResultados = true">Buscar</button>
+                    </div>
+
+                    <div class="resultados-busqueda" x-show="mostrarResultados" x-cloak>
+                        <div class="resultado-juego" x-show="cargando">Cargando juegos...</div>
+                        <div class="resultado-juego" x-show="error">Error al cargar los juegos</div>
+
+                        <template x-if="!cargando && !error">
+                            <div>
+                                <template x-for="juego in juegosFiltrados" :key="juego.id">
+                                    <div>
+                                        <a href="BlackJack.html" class="resultado-juego" x-show="juego.nombre === 'Super21'">
+                                            <span x-text="juego.nombre"></span>
+                                            <span class="categoria-juego" x-text="juego.categoria"></span>
+                                        </a>
+                                        <div class="resultado-juego" x-show="juego.nombre !== 'Super21'">
+                                            <span x-text="juego.nombre"></span>
+                                            <span class="categoria-juego" x-text="juego.categoria"></span>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <div class="resultado-juego" x-show="juegosFiltrados.length === 0">
+                                    No se encontraron juegos
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row justify-content-center" aria-label="Juegos disponibles">

@@ -96,7 +96,18 @@ a:focus-visible {
     outline-offset: 4px;
 }
 
-footer { border-top: 1px solid rgba(213, 173, 83, .2); }
+footer{ border-top: 1px solid rgba(213, 173, 83, .2); }
+
+.cuenta-menu { 
+    position: absolute; right: 0; top: 100%; margin-top: 10px; width: 290px;
+    max-width: 90vw; background: #082B0A; border: 1px solid goldenrod;
+    border-radius: 10px; padding: 18px; color: white; z-index: 1000;
+    box-shadow: 0 6px 16px rgba(0,0,0,.6); 
+}
+
+.cuenta-menu h5, .cuenta-menu .saldo { color: goldenrod; }
+
+.cuenta-menu .datos { border-top: 1px solid #806522; margin-top: 12px; padding-top: 12px; }
 
 
 

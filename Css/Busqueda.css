@@ -1,0 +1,41 @@
+.contenedor-busqueda {
+    position: relative;
+}
+
+.resultados-busqueda {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 6px;
+    background-color: #09250e;
+    border: 1px solid goldenrod;
+    border-radius: 8px;
+    z-index: 10;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.resultado-juego {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    color: #f2e5c5;
+    text-decoration: none;
+    border-bottom: 1px solid #3e3927;
+}
+
+.resultado-juego:last-child {
+    border-bottom: none;
+}
+
+a.resultado-juego:hover {
+    background-color: #174522;
+    color: goldenrod;
+}
+
+.categoria-juego {
+    font-size: 13px;
+    color: goldenrod;
+}

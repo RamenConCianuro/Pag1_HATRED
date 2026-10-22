@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "usuario": "Jugador1",
+        "clave": "1234",
+        "tipo": "normal",
+        "creditos": 1000
+    },
+    {
+        "id": 2,
+        "usuario": "Jugador2",
+        "clave": "2345",
+        "tipo": "normal",
+        "creditos": 2500
+    },
+    {
+        "id": 3,
+        "usuario": "Jugador3",
+        "clave": "3456",
+        "tipo": "normal",
+        "creditos": 500
+    },
+    {
+        "id": 4,
+        "usuario": "Admin",
+        "clave": "admin123",
+        "tipo": "admin",
+        "creditos": 5000
+    }
+]
