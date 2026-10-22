@@ -2,31 +2,56 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Cuenta</title>
+    <title>Crear cuenta | Esquilax Bet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="Css/Sesion.css">
 </head>
-<body>
-    <button id="Esquilax" class="Esquilax">
-        <h1>Esquilax Bet</h1> <br>
-    </button>
-    
-    
-    <p id="descripcion">
-        Crea una cuenta para poder ingresar fondos. Recuerda que, al tratarse de una página que gestiona dinero, debes cumplir con los requisitos legales de mayoría de edad.
-    </p>
-    
-    
-    <div class="cuadro">
-        <p>Crear Cuenta</p>
-        <form id="CrearCuenta">
-            <label for="nuevo-usuario">Correo</label> 
-            <input type="text" id="nuevo-usuario" name="nuevo-usuario" required><br>
-            <label for="nueva-contraseña">Contraseña</label>
-            <input type="password" id="nueva-contraseña" name="nueva-contraseña" required><br><br>
-            <input type="submit" value="Crear Cuenta">
-        </form>
+<body class="d-flex flex-column">
+    <div class="barra">
+        <div class="container py-3 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html" class="btn btn-outline-dorado boton-icono" aria-label="Inicio">
+                    <img src="Imagenes/house-door-fill.svg" width="22" height="22" alt="">
+                </a>
+                <a href="index.html" id="Esquilax" class="marca">Esquilax Bet</a>
+            </div>
+            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2">
+                <a href="Login.html" class="btn btn-outline-dorado">Iniciar sesión</a>
+                <a href="SignIn.html" class="btn btn-dorado" aria-current="page">Crear cuenta</a>
+                <a href="Login.html" class="btn btn-outline-dorado boton-icono rounded-circle" aria-label="Iniciar sesión en tu cuenta">
+                    <img src="Imagenes/person-circle.svg" width="26" height="26" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center py-4 py-md-5">
+        <div class="cuadro rounded-4 p-4 p-sm-5">
+            <div class="text-center mb-4">
+                <p class="texto-dorado small text-uppercase fw-semibold mb-2">Esquilax Bet</p>
+                <h1 class="titulo-sesion mb-3">Crear cuenta</h1>
+                <p id="descripcion" class="texto-suave small mb-0">Crea una cuenta para poder ingresar fondos. Recuerda que, al tratarse de una página que gestiona dinero, debes cumplir con los requisitos legales de mayoría de edad.</p>
+            </div>
+            <form id="CrearCuenta">
+                <div class="mb-3">
+                    <label for="nuevo-usuario" class="form-label">Correo</label>
+                    <input type="text" id="nuevo-usuario" name="nuevo-usuario" class="form-control" autocomplete="username" inputmode="email" required>
+                </div>
+                <div class="mb-4">
+                    <label for="nueva-contraseña" class="form-label">Contraseña</label>
+                    <input type="password" id="nueva-contraseña" name="nueva-contraseña" class="form-control" autocomplete="new-password" required>
+                </div>
+                <input type="submit" class="btn btn-dorado btn-lg w-100" value="Crear cuenta">
+            </form>
+            <p class="texto-suave small text-center mt-4 mb-0">¿Ya tienes cuenta? <a href="Login.html" class="enlace-sesion">Iniciar sesión</a></p>
+        </div>
+    </div>
+    <div class="pie py-3 text-center">
+        <div class="container texto-suave small">Esquilax Bet · Proyecto universitario · Demostración</div>
     </div>
     <script src="Js/Sesion.js"></script>
 </body>

@@ -1,69 +1,107 @@
-body{
-    color: goldenrod;
-    margin: 0;
-    background-image: url("../Imagenes/background.png");
-    background-size: cover;
+:root{
+    --casino-verde: #082b0a;
+    --casino-dorado: #d5ad53;
+    --casino-texto: #f5eedc;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    color: var(--casino-texto);
+    background-color: var(--casino-verde);
+    background-image: linear-gradient(rgba(3, 19, 8, .35), rgba(3, 19, 8, .50)), url("../Imagenes/background.png");
     background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-size: cover;
+}
+
+.barra {
+    background: rgba(8, 43, 10, .96);
+    border-bottom: 1px solid var(--casino-dorado);
+}
+
+.marca {
+    color: #ef5558;
     font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.35rem, 4vw, 1.9rem);
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0 2px 3px #000;
 }
 
-.Esquilax {
-    display: block;
-    width: fit-content;
-    margin: 50px auto 0;
-    font-family: inherit;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+.marca:hover { color: #ff777a; }
+
+.btn-dorado {
+    --bs-btn-color: #16200f;
+    --bs-btn-bg: var(--casino-dorado);
+    --bs-btn-border-color: var(--casino-dorado);
+    --bs-btn-hover-color: #10170b;
+    --bs-btn-hover-bg: #e8c779;
+    --bs-btn-hover-border-color: #e8c779;
+    --bs-btn-active-color: #10170b;
+    --bs-btn-active-bg: #c49a40;
+    --bs-btn-active-border-color: #c49a40;
+    --bs-btn-focus-shadow-rgb: 213, 173, 83;
+    font-weight: 600;
 }
 
-h1 {
-    color: #E6262B;
-    text-align: center;
-    font-size: 50px;
-    margin: 0;
-    padding: 0;
-    text-shadow:
-        3px 3px 5px #000000,
-        4px 4px 5px black,
-        5px 5px 5px black;
+.btn-outline-dorado {
+    --bs-btn-color: var(--casino-dorado);
+    --bs-btn-border-color: var(--casino-dorado);
+    --bs-btn-hover-color: #16200f;
+    --bs-btn-hover-bg: var(--casino-dorado);
+    --bs-btn-hover-border-color: var(--casino-dorado);
+    --bs-btn-active-color: #16200f;
+    --bs-btn-active-bg: #e8c779;
+    --bs-btn-active-border-color: #e8c779;
+    --bs-btn-focus-shadow-rgb: 213, 173, 83;
 }
 
-#descripcion{
-    font-size: 25px;
-    text-align: center;
-    background-color: #000000;
-    border: 2px goldenrod solid;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 30px;
-}
-.cuadro{
-    position: relative;
-    font-size: 20px;
-    background-color: #000000;
-    color:yellow;
-    border: 2px solid goldenrod;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px auto;
-    width: 20%;
-    height: 200px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.cuadro label{
-    line-height: 2;
+.boton-icono {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
-input[type="submit"]{
-    font-size: 15px;
-    background-color: #F0F033;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+.boton-icono img { filter: invert(1); }
+.boton-icono:hover img { filter: none; }
+.texto-dorado { color: var(--casino-dorado); }
+.texto-suave { color: #c4cebf; }
+
+.titulo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.25rem, 6vw, 4rem);
 }
+
+
+
+.cuadro {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(12, 28, 18, .97);
+    border: 1px solid rgba(213, 173, 83, .55);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .35);
+}
+.titulo-sesion {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+}
+.form-label { color: var(--casino-texto); }
+.form-control {
+    min-height: 48px;
+    color: var(--casino-texto);
+    background-color: #14291b;
+    border-color: #66745d;
+}
+.form-control:focus {
+    color: var(--casino-texto);
+    background-color: #14291b;
+    border-color: var(--casino-dorado);
+    box-shadow: 0 0 0 .25rem rgba(213, 173, 83, .2);
+}
+.enlace-sesion { color: var(--casino-dorado); text-underline-offset: 4px; }
+.enlace-sesion:hover { color: #e8c779; }
+a:focus-visible, .btn:focus-visible { outline: 3px solid #f5eedc; outline-offset: 4px; }
+.pie { border-top: 1px solid rgba(213, 173, 83, .2); }
