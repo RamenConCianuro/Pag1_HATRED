@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta Rusa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="Css/Super21.css">
+    <link rel="stylesheet" href="Css/Ruleta.css">
+    <script src="Js/Cuentas.js" defer></script>
+
+    <script>
+        const modoUsuario = localStorage.getItem("sesion") !== null;
+        if (modoUsuario) document.documentElement.classList.add("modo-usuario");
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="d-flex flex-column">
+    <div class="barra" x-data="cuentaInicio()" x-init="cargarCuenta()" @saldo-actualizado.window="actualizarCreditos()">
+        <div class="container py-3 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html" class="btn btn-outline-dorado boton-icono" aria-label="Inicio">
+                    <img src="Imagenes/house-door-fill.svg" width="22" height="22" alt="">
+                </a>
+                <a href="index.html" class="Esquilax">Esquilax Bet</a>
+            </div>
+
+            <div x-cloak x-show="!cargando">
+                <template x-if="!cuenta">
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="Login.html" class="btn btn-outline-dorado">Iniciar sesión</a>
+                        <a href="SignIn.html" class="btn btn-dorado">Crear cuenta</a>
+                        <a href="Login.html" class="btn btn-outline-dorado boton-icono rounded-circle">
+                            <img src="Imagenes/person-circle.svg" width="26" height="26" alt="Cuenta">
+                        </a>
+                    </div>
+                </template>
+
+                <template x-if="cuenta">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="texto-dorado" x-text="cuenta.usuario"></span>
+                        <div class="position-relative" @click.outside="mostrarMenu = false">
+                            <button class="btn btn-outline-dorado boton-icono rounded-circle"
+                                    @click="mostrarMenu = !mostrarMenu" title="Mi cuenta">
+                                <img src="Imagenes/person-circle.svg" width="26" height="26" alt="Mi cuenta">
+                            </button>
+
+                            <div class="cuenta-menu" x-show="mostrarMenu" x-cloak>
+                                <h5 class="mb-3">Mi cuenta</h5>
+                                <div>Usuario: <strong x-text="cuenta.usuario"></strong></div>
+                                <div class="mt-2">Créditos disponibles:</div>
+                                <div class="saldo fs-4 fw-bold" x-text="creditos"></div>
+
+                                <div class="datos">
+                                    <div class="mb-2">Estadísticas</div>
+                                    <div>Partidas: 0</div>
+                                    <div>Victorias: 0</div>
+                                    <div>Derrotas: 0</div>
+                                </div>
+
+                                <form class="datos" x-show="cuenta.tipo === 'admin'"
+                                    @submit.prevent="modificarSaldo()">
+                                    <div class="texto-dorado mb-2">Modificar mi saldo</div>
+                                    <label class="form-label" for="nuevoSaldo">Nuevo saldo (máximo 10000)</label>
+                                    <input class="form-control mb-2" id="nuevoSaldo" type="number"
+                                        min="0" max="10000" x-model="nuevoSaldo">
+                                    <button type="submit" class="btn btn-dorado w-100">Guardar saldo</button>
+                                </form>
+                                <p class="small mt-2 mb-0" x-show="mensaje !== ''" x-text="mensaje"></p>
+                                <button class="btn btn-outline-dorado w-100 mt-3" @click="cerrarSesion()">
+                                    Cerrar sesión
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <div class="container flex-grow-1 py-4 py-md-5">
+        <div class="text-center mb-4">
+            <p class="texto-dorado small text-uppercase fw-semibold mb-2">Revólver</p>
+            <h1 class="titulo mb-0">Ruleta Rusa</h1>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-12 col-lg-8 col-xl-6 d-flex justify-content-end">
+                <div class="reglamento" x-data="{ mostrar: false }" @click.outside="mostrar = false">
+                    <button class="btn btn-outline-dorado" @click="mostrar = !mostrar">Reglamento</button>
+
+                    <div class="reglamento-panel" x-show="mostrar" x-cloak>
+                        <h4 class="text-center mb-3 texto-dorado">Reglamento de Ruleta Rusa</h4>
+
+                        <h5>1. La bala</h5>
+                        <p>El revólver tiene 6 recámaras. Elige en cuál va la única bala; luego se oculta y el cilindro gira. Presiona Detener para frenarlo: la posición final es aleatoria.</p>
+
+                        <h5>2. Disparar</h5>
+                        <p>Después del giro solo puedes Disparar o Desistir. Si la recámara está vacía, tu saldo se multiplica y pasas a la siguiente recámara en sentido horario.</p>
+
+                        <h5>3. Multiplicadores</h5>
+                        <p>Disparo 1: x1.5, disparo 2: x2, disparo 3: x2.5, disparo 4: x3 y disparo 5: x3.5, siempre sobre el saldo con el que empezaste la ronda (máximo 10000).</p>
+
+                        <h5>4. La bala</h5>
+                        <p>Si disparas y está la bala, tu saldo se multiplica por 0 y lo pierdes todo.</p>
+
+                        <h5>5. Desistir</h5>
+                        <p>Si desistes conservas lo ganado y la ronda se reinicia: tendrás que colocar la bala otra vez.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-6">
+                <div id="mesa-ruleta" class="mesa rounded-4 p-3 p-sm-4" data-fase="colocar">
+                    <div class="row g-2 justify-content-center text-center mb-3">
+                        <div class="col-4 solo-usuario"><div class="dato">Saldo<strong id="saldo">0</strong></div></div>
+                        <div class="col-4"><div class="dato">Multiplicador<strong id="multiplicador">x1</strong></div></div>
+                        <div class="col-4"><div class="dato">Siguiente<strong id="siguiente">x1.5</strong></div></div>
+                    </div>
+
+                    <p id="mensaje" class="text-center" aria-live="polite"></p>
+
+                    <div id="revolver" class="revolver">
+                        <div id="mira" class="mira"><div class="mira-anillo"></div></div>
+                        <div id="capa" class="capa">
+                            <button type="button" class="recamara r0" data-pos="0" aria-label="Recámara 1"><img class="bala" src="Imagenes/bala.png" alt="Bala"></button>
+                            <button type="button" class="recamara r1" data-pos="1" aria-label="Recámara 2"><img class="bala" src="Imagenes/bala.png" alt="Bala"></button>
+                            <button type="button" class="recamara r2" data-pos="2" aria-label="Recámara 3"><img class="bala" src="Imagenes/bala.png" alt="Bala"></button>
+                            <button type="button" class="recamara r3" data-pos="3" aria-label="Recámara 4"><img class="bala" src="Imagenes/bala.png" alt="Bala"></button>
+                            <button type="button" class="recamara r4" data-pos="4" aria-label="Recámara 5"><img class="bala" src="Imagenes/bala.png" alt="Bala"></button>
+                            <button type="button" class="recamara r5" data-pos="5" aria-label="Recámara 6"><img class="bala" src="Imagenes/bala.png" alt="Bala"></button>
+                            <img id="cilindro" src="Imagenes/cilindro_revolver.png" alt="Cilindro del revólver">
+                        </div>
+                        <img id="simbolo" src="Imagenes/simbolo_dinero.png" alt="">
+                    </div>
+
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <button id="detener" class="accion btn btn-dorado btn-lg">Detener</button>
+                        <button id="disparar" class="accion btn btn-dorado btn-lg">Disparar</button>
+                        <button id="desistir" class="accion btn btn-outline-dorado btn-lg">Desistir</button>
+                        <button id="reiniciar" class="accion btn btn-dorado btn-lg">Jugar de nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Js/Ruleta.js"></script>
+</body>
+</html>

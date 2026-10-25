@@ -108,7 +108,11 @@
                                             <span x-text="juego.nombre"></span>
                                             <span class="categoria-juego" x-text="juego.categoria"></span>
                                         </a>
-                                        <div class="resultado-juego" x-show="juego.nombre !== 'Super21'">
+                                        <a href="Ruleta.html" class="resultado-juego" x-show="juego.nombre === 'Ruleta Rusa'">
+                                            <span x-text="juego.nombre"></span>
+                                            <span class="categoria-juego" x-text="juego.categoria"></span>
+                                        </a>
+                                        <div class="resultado-juego" x-show="juego.nombre !== 'Super21' && juego.nombre !== 'Ruleta Rusa'">
                                             <span x-text="juego.nombre"></span>
                                             <span class="categoria-juego" x-text="juego.categoria"></span>
                                         </div>
@@ -137,6 +141,23 @@
                         <h2 class="card-title h3 mb-3">Super 21</h2>
                         <p class="card-text texto-suave mb-4">Enfréntate al dealer. Acércate a 21 sin pasarte y decide cuándo pedir otra carta o plantarte.</p>
                         <a href="BlackJack.html" class="btn btn-dorado btn-lg w-100">Jugar ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-10 col-lg-8 mt-4">
+                <div class="card tarjeta-juego rounded-4 overflow-hidden mx-auto">
+                    <a href="Ruleta.html" aria-label="Jugar a la ruleta rusa">
+                        <div class="imagen-juego bg-black d-flex align-items-center justify-content-center gap-4 p-3">
+                            <img src="Imagenes/simbolo_dinero.png" alt="" style="height: 100%;">
+                            <img src="Imagenes/bala.png" alt="" style="height: 100%;">
+                            <img src="Imagenes/calavera.png" alt="" style="height: 100%;">
+                        </div>
+                    </a>
+                    <div class="card-body p-4">
+                        <p class="texto-dorado small text-uppercase fw-semibold mb-2">Revólver</p>
+                        <h2 class="card-title h3 mb-3">Ruleta Rusa</h2>
+                        <p class="card-text texto-suave mb-4">Coloca la bala, gira el cilindro y dispara. Cada recámara vacía multiplica tu saldo... hasta que sale la bala.</p>
+                        <a href="Ruleta.html" class="btn btn-dorado btn-lg w-100">Jugar ahora</a>
                     </div>
                 </div>
             </div>

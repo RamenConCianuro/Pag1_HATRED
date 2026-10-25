@@ -43,5 +43,17 @@
             "Maquinas tragamonedas",
             "Tragamonedas"
         ]
+    },
+    {
+        "id": 5,
+        "nombre": "Ruleta Rusa",
+        "categoria": "Revolver",
+        "nombres": [
+            "Ruleta Rusa",
+            "Ruleta rusa",
+            "Russian roulette",
+            "Revolver",
+            "Revólver"
+        ]
     }
 ]
