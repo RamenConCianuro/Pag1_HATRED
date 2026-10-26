@@ -91,6 +91,17 @@ El icono de usuario de la barra permite mostrar u ocultar un pequeño menú medi
 
 La estructura está preparada para que posteriormente este espacio pueda mostrar información del usuario, saldo u otras opciones relacionadas con la cuenta.
 
+Cuentas de prueba:
+
+El proyecto incluye cuentas ya creadas, definidas en Json/Cuentas.json. Al iniciar sesión, el usuario y la contraseña ingresados se comparan con esa lista.
+
+-Jugador1: contraseña 1234, tipo normal, 1000 créditos iniciales.
+-Jugador2: contraseña 2345, tipo normal, 2500 créditos iniciales.
+-Jugador3: contraseña 3456, tipo normal, 500 créditos iniciales.
+-Admin: contraseña admin123, tipo administrador, 5000 créditos iniciales.
+
+Los créditos de cada cuenta se guardan en el navegador (localStorage) y se actualizan con las partidas de Super 21 y Ruleta Rusa, con un máximo de 10000. La cuenta Admin puede modificar su propio saldo desde el menú de usuario.
+
 Super 21 / Blackjack:
 
 El proyecto incorpora un juego funcional de Super 21 desarrollado en JavaScript.
